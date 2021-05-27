@@ -1,0 +1,36 @@
+{
+  "name": "proxyscrapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "test": "jest",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "build": "esbuild src/index.ts --bundle --sourcemap=external --outfile=dist/index.js",
+    "start": "node dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.6.1",
+    "@types/node-fetch": "^2.5.10",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
+    "esbuild": "^0.12.3",
+    "eslint": "^7.27.0",
+    "jest": "^27.0.1",
+    "ts-jest": "^27.0.1",
+    "ts-node": "^10.0.0",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.9",
+    "form-data": "^3.0.1",
+    "https-proxy-agent": "^5.0.0",
+    "node-fetch": "^2.6.1",
+    "request": "^2.88.2"
+  }
+}
