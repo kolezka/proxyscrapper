@@ -76,15 +76,19 @@ async function checkProxy(proxy: IProxyBaseDocument) {
     await proxy.delete(); 
   } else {
     proxy.updated_at = new Date;
-    proxy.save();
+    await proxy.save();
   }
   return Promise.resolve();
 }
 
 async function main() {
-  const proxies = await ProxyModel.find({});
-  const chunks: IProxyBaseDocument[][] = chunk(proxies, 3);
-  for await (const chunk of chunks) {
-    await Promise.all(chunk.map(checkProxy));
+  const loop = async () => {
+    const proxies = await ProxyModel.find({});
+    const chunks: IProxyBaseDocument[][] = chunk(proxies, 3);
+    for await (const chunk of chunks) {
+      await Promise.all(chunk.map(checkProxy));
+    }
   }
+  setInterval(loop, 1000 * 60 * 15); // every 15mins
+  loop();
 }
