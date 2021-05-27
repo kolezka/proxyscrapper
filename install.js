@@ -40,6 +40,7 @@ if (dirExists(installationDirectory)) {
 }
 
 fs.mkdirSync(installationDirectory);
+fs.mkdirSync(path.join(installationDirectory, 'workers'));
 
 execSync('npm run build')
 
@@ -47,6 +48,19 @@ fs.copyFileSync(
   path.join(__dirname, 'dist/proxyscrapper.js'),
   path.join(installationDirectory, 'proxyscrapper.js'),
 );
+
+const workers = fs.readdirSync(path.join(__dirname, 'dist/workers'), {
+  withFileTypes: true,
+})
+
+for (const worker of workers) {
+  const { name } = worker;
+  console.log('Copying worker', name)
+  fs.copyFileSync(
+    path.join(__dirname, 'dist/workers', name), 
+    path.join(installationDirectory, 'workers', name),
+  )
+}
 
 if (fileExists(serviceFilePath)) {
   console.log('Removing old service definition');
