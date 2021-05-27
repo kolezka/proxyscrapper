@@ -13,10 +13,14 @@ export class ProxyScrapeScrapper implements IScrapper {
   async scrap() {
     const output: string[] = [];
     for await (const target of this.targets) {
-      const text = await fetch(target).then((res) => res.text());
-      const list = text.split('\r\n');
-      list.pop();
-      output.push(...list);
+      try {
+        const text = await fetch(target).then((res) => res.text());
+        const list = text.split('\r\n');
+        list.pop();
+        output.push(...list);
+      } catch {
+        //
+      }
     }
     return output;
   }

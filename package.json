@@ -7,8 +7,11 @@
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "test": "jest",
     "dev": "ts-node-dev --respawn src/index.ts",
-    "build": "esbuild src/index.ts --bundle --sourcemap=external --outfile=dist/index.js",
-    "start": "node dist/index.js"
+    "clean": "rm -r dist",
+    "build:app": "esbuild --platform=node --bundle src/index.ts --outfile=dist/proxyscrapper.js",
+    "build": "npm run clean && npm run build:app",
+    "start": "node dist/proxyscrapper.js",
+    "install": "sudo node install.js"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +22,7 @@
     "@typescript-eslint/eslint-plugin": "^4.25.0",
     "@typescript-eslint/parser": "^4.25.0",
     "esbuild": "^0.12.3",
+    "esbuild-node-tsc": "^1.4.2",
     "eslint": "^7.27.0",
     "jest": "^27.0.1",
     "ts-jest": "^27.0.1",
@@ -30,6 +34,7 @@
     "cheerio": "^1.0.0-rc.9",
     "form-data": "^3.0.1",
     "https-proxy-agent": "^5.0.0",
+    "mongodb-client-encryption": "^1.2.3",
     "mongoose": "^5.12.11",
     "node-fetch": "^2.6.1",
     "request": "^2.88.2"

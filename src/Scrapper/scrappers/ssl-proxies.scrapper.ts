@@ -15,26 +15,30 @@ export class SslProxiesScrapper implements IScrapper {
 
   async scrap() {
     const output: string[] = [];
-    const txt = await fetch(this.targets[0]).then((res) => res.text());
-    const rows = txt.match(tableRowRegex)
-    if (rows) {
-      for (const row of rows) {
-        if (row.match(countries)) {
-          const colMatches = row.match(columnRegex);
-          if (colMatches) {
-            const [ipDirty, portDirty] = colMatches;
-            const ipMatches = ipDirty.match(ipRegex);
-            const portMatches = portDirty.match(portRegex);
-            if (ipMatches && portMatches) {
-              const [ip, port] = [
-                ipMatches[0],
-                portMatches[0]
-              ];
-              output.push(`${ip}:${port}`)
+    try {
+      const txt = await fetch(this.targets[0]).then((res) => res.text());
+      const rows = txt.match(tableRowRegex)
+      if (rows) {
+        for (const row of rows) {
+          if (row.match(countries)) {
+            const colMatches = row.match(columnRegex);
+            if (colMatches) {
+              const [ipDirty, portDirty] = colMatches;
+              const ipMatches = ipDirty.match(ipRegex);
+              const portMatches = portDirty.match(portRegex);
+              if (ipMatches && portMatches) {
+                const [ip, port] = [
+                  ipMatches[0],
+                  portMatches[0]
+                ];
+                output.push(`${ip}:${port}`)
+              }
             }
           }
         }
       }
+    } catch {
+      //
     }
     return output;
   }

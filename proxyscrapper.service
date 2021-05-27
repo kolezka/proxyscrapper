@@ -1,0 +1,7 @@
+[Unit]
+Description=ProxyScrapper
+
+[Service]
+Restart=always
+WorkingDirectory=/opt/node-apps/proxyscrapper/
+ExecStart=node /opt/node-apps/proxyscrapper/proxyscrapper.js
