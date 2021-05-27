@@ -3,8 +3,8 @@ import mongoose, { Document, Model } from 'mongoose';
 export interface IProxy {
   status: boolean,
   proxy: string,
-  created_at: Date,
-  updated_at: Date,
+  createdAt: Date,
+  updatedAt: Date,
 }
 
 // methods

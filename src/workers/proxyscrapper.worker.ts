@@ -48,7 +48,7 @@ const chunk = (array: any[], size: number) =>
 
 async function checkProxyConnection(proxy: string) {
   try {
-    const agent = createHttpProxyAgent(proxy);
+    const agent = createHttpProxyAgent(`https://${proxy}`);
     const abortController = new AbortController();
     const timeoutId = setTimeout(
       () => {
@@ -73,9 +73,10 @@ async function checkProxy(proxy: IProxyBaseDocument) {
   log(`Checking ${proxyString}`);
   const isProxyWorking = await checkProxyConnection(proxyString);
   if (!isProxyWorking) {
+    log(`Removing proxy ${proxyString}`)
     await proxy.delete(); 
   } else {
-    proxy.updated_at = new Date;
+    proxy.updatedAt = new Date;
     await proxy.save();
   }
   return Promise.resolve();
