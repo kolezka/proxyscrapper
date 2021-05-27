@@ -3,7 +3,7 @@ import {
   isMainThread,
   parentPort
 } from 'worker_threads';
-import createHttpProxyAgent from 'http-proxy-agent';
+import createHttpProxyAgent from 'https-proxy-agent';
 import fetch from 'node-fetch';
 import {Config} from '../config'
 import db from '../database';
