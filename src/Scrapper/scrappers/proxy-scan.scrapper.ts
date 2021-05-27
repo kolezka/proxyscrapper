@@ -1,7 +1,8 @@
 import fetch from 'node-fetch';
-import {Scrapper} from './abstract.scrapper';
+import {Config} from '../../config';
+import {IScrapper} from './scrapper.interface';
 
-export class ProxyScanScrapper extends Scrapper {
+export class ProxyScanScrapper implements IScrapper {
 
   readonly targets = [
     'https://www.proxyscan.io/Home/FilterResult',
@@ -15,7 +16,7 @@ export class ProxyScanScrapper extends Scrapper {
     formData.append('selectedCountry', 'DE');
     formData.append('selectedCountry', 'PL');
     formData.append('selectedCountry', 'GB');
-    formData.append('ping', '10000')
+    formData.append('ping', String(Config.TIMEOUT))
     formData.append('status', '1')
     formData.append('selectedType', 'HTTPS')
     formData.append('sortPing', 'false')
@@ -36,7 +37,6 @@ export class ProxyScanScrapper extends Scrapper {
 
     const rows = response.split('<tr>')
     for (const row of rows) {
-      console.log(row);
       const IPmatches = row.match(/(<th scope="row">)(.*)(<\/th>)/);
       if (IPmatches) {
         const portMatches = row.match(/(<td>)([0-9]*)(<\/td>)/);
@@ -48,7 +48,7 @@ export class ProxyScanScrapper extends Scrapper {
       }
     }
 
-    return Promise.resolve(output);
+    return output;
   }
 
 }

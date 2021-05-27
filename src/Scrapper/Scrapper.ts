@@ -3,6 +3,7 @@ import fetch from 'node-fetch';
 import {SslProxiesScrapper} from './scrappers/ssl-proxies.scrapper';
 import {ProxyScrapeScrapper} from './scrappers/proxy-scrape.scrapper';
 import {ProxyScanScrapper} from './scrappers/proxy-scan.scrapper';
+import {Config} from '../config';
 
 export class Scrapper {
 
@@ -25,11 +26,10 @@ export class Scrapper {
         () => {
           abortController.abort();
         },
-        10000
+        Config.TIMEOUT
       )
       await fetch('https://raqz.pl', {
         agent,
-        timeout: 100,
         signal: abortController.signal,
       });
       clearTimeout(timeoutId);

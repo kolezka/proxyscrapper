@@ -1,8 +1,6 @@
-import fetch from 'node-fetch';
-import cheerio from 'cheerio';
-import {Scrapper} from './abstract.scrapper';
+import {IScrapper} from './scrapper.interface';
 
-export class AdvancedScrapper extends Scrapper {
+export class AdvancedScrapper implements IScrapper {
 
   readonly targets = [
     'https://advanced.name/freeproxy?country=PL',
@@ -11,17 +9,7 @@ export class AdvancedScrapper extends Scrapper {
   ]
 
   async scrap() {
-
-    for await (const target of this.targets) {
-      const txt = await fetch(target).then((res) => res.text());
-      const $ = cheerio.load(txt);
-
-      console.log($.html());
-
-
-
-    }
-
+    // TODO
     return [];
   }
 

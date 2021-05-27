@@ -1,15 +1,14 @@
-import {Scrapper} from './abstract.scrapper';
 import fetch from 'node-fetch';
+import {IScrapper} from './scrapper.interface';
 
 const tableRowRegex = /(<tr.*?>)(.*?)(<\/tr>)/g
 const columnRegex = /(<td>)(.*?)(<\/td>)/g;
 const ipRegex = /((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/;
 const portRegex = /(6553[0-5]|655[0-2][0-9]|65[0-4][0-9][0-9]|6[0-4][0-9][0-9][0-9][0-9]|[1-5](\d){4}|[1-9](\d){0,3})/;
-
 const countries = /(United Kingdom)|(Germany)|(Poland)/g;
 
-export class SslProxiesScrapper extends Scrapper {
-
+export class SslProxiesScrapper implements IScrapper {
+  
   readonly targets = [
     'https://www.sslproxies.org/'
   ]

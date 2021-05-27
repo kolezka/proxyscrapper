@@ -30,6 +30,7 @@
     "cheerio": "^1.0.0-rc.9",
     "form-data": "^3.0.1",
     "https-proxy-agent": "^5.0.0",
+    "mongoose": "^5.12.11",
     "node-fetch": "^2.6.1",
     "request": "^2.88.2"
   }

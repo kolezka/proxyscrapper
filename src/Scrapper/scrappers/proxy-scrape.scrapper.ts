@@ -1,12 +1,13 @@
 import fetch from 'node-fetch';
-import {Scrapper} from './abstract.scrapper';
+import {Config} from '../../config';
+import {IScrapper} from './scrapper.interface';
 
-export class ProxyScrapeScrapper extends Scrapper {
+export class ProxyScrapeScrapper implements IScrapper {
 
   targets: string[] = [
-    'https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=pl&ssl=yes&anonymity=all&simplified=true',
-    'https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=de&ssl=yes&anonymity=all&simplified=true',
-    'https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=gb&ssl=yes&anonymity=all&simplified=true',
+    `https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=${Config.TIMEOUT}&country=pl&ssl=yes&anonymity=all&simplified=true`,
+    `https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=${Config.TIMEOUT}&country=de&ssl=yes&anonymity=all&simplified=true`,
+    `https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=${Config.TIMEOUT}&country=gb&ssl=yes&anonymity=all&simplified=true`,
   ];
 
   async scrap() {

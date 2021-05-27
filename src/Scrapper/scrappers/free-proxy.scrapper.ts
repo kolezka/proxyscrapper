@@ -1,8 +1,6 @@
-import cheerio from 'cheerio';
-import fetch from 'node-fetch';
-import {Scrapper} from './abstract.scrapper';
+import {IScrapper} from './scrapper.interface';
 
-export class FreeProxyScrapper extends Scrapper {
+export class FreeProxyScrapper implements IScrapper {
   readonly targets = [
     'http://free-proxy.cz/en/proxylist/country/PL/https/ping/all',
     'http://free-proxy.cz/en/proxylist/country/DE/https/ping/all',
@@ -10,17 +8,7 @@ export class FreeProxyScrapper extends Scrapper {
   ]
 
   async scrap() {
-
-    console.log('Scrap');
-
-    for await (const url of this.targets) {
-      console.log(url);
-      const txt = await fetch(url).then((res) => res.text());
-      console.log(txt);
-      const $ = cheerio.load(txt);
-      console.log($.html());
-    }
-
+    // TODO
     return Promise.resolve([]);
   }
 
