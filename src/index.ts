@@ -1,17 +1,13 @@
-
 import { Worker } from 'worker_threads';
 import { IWorkerMessage, WorkerMessages } from './workers/proxyscrapper.worker';
 
 const worker = new Worker(__dirname + '/workers/proxyscrapper.worker.js');
 
 worker.on('message', (e) => {
-  
   const onLog = (payload: IWorkerMessage<string>)  => console.log(payload.data);
-
   const onError = (payload: IWorkerMessage<any>) => {
     console.log(String(payload.data));
   }
-
   switch (e.type) {
     case WorkerMessages.ERROR:
       onError(e);
@@ -20,7 +16,6 @@ worker.on('message', (e) => {
       onLog(e);
     break;
   }
-
 });
 
 
@@ -31,6 +26,7 @@ import {Config} from './config';
 import {clearInterval} from 'timers';
 
 let intervalId: any = -1;
+
 
 bootstrap
   .then(async () => {

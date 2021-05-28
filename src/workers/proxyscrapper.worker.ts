@@ -5,7 +5,6 @@ import {
 } from 'worker_threads';
 import createHttpProxyAgent from 'https-proxy-agent';
 import fetch from 'node-fetch';
-import {Config} from '../config'
 import db from '../database';
 import { IProxyBaseDocument, ProxyModel } from '../models/proxy/proxy.model';
 
@@ -54,7 +53,7 @@ async function checkProxyConnection(proxy: string) {
       () => {
         abortController.abort();
       },
-      Config.TIMEOUT * 2,
+      1000 * 60,
     )
     await fetch('https://raqz.pl', {
       agent,
