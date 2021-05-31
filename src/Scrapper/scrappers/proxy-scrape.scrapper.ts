@@ -18,8 +18,8 @@ export class ProxyScrapeScrapper implements IScrapper {
         const list = text.split('\r\n');
         list.pop();
         output.push(...list);
-      } catch {
-        //
+      } catch (e) {
+        console.log(e);
       }
     }
     return output;

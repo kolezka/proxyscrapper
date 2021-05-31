@@ -47,8 +47,8 @@ export class AdvancedScrapper implements IScrapper {
 
       }
 
-    } catch {
-      //
+    } catch (e) {
+      console.log(e);
     }
     return output;
   }

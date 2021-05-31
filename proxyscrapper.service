@@ -3,6 +3,7 @@ Description=ProxyScrapper
 
 [Service]
 Restart=always
+Environment=ENABLE_WORKER=false
 WorkingDirectory=/opt/node-apps/proxyscrapper/
 ExecStart=node /opt/node-apps/proxyscrapper/proxyscrapper.js
 

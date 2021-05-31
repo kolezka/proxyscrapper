@@ -37,8 +37,8 @@ export class SslProxiesScrapper implements IScrapper {
           }
         }
       }
-    } catch {
-      //
+    } catch (e) {
+      console.log(e);
     }
     return output;
   }
