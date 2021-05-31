@@ -6,30 +6,8 @@ import {Scrapper} from './Scrapper/Scrapper';
 import {ProxyModel} from './models/proxy/proxy.model';
 import {Config} from './config';
 import {clearInterval} from 'timers';
-// import {Worker } from 'worker_threads';
-// import {IWorkerMessage, WorkerMessages } from './workers/proxyscrapper.worker';
 
 let intervalId: any = -1;
-
-
-// function startWorker() {
-//   if (process.env.ENABLE_WORKER !== 'false') {
-//     console.log(new Date, 'creating worker');
-//     const worker = new Worker(__dirname + '/workers/proxyscrapper.worker.js');
-//     worker.on('message', (e) => {
-//       const onLog = (payload: IWorkerMessage<string>)  => console.log(payload.data);
-//       const onError = (payload: IWorkerMessage<any>) => console.log(String(payload.data));
-//       switch (e.type) {
-//         case WorkerMessages.ERROR:
-//           onError(e);
-//           break;
-//         case WorkerMessages.LOG:
-//           onLog(e);
-//         break;
-//       }
-//     });
-//   }
-// }
 
 bootstrap
   .then(async () => {

@@ -7,10 +7,9 @@
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "test": "jest",
     "dev": "ts-node-dev --respawn src/index.ts",
-    "clean": "rm -r dist",
     "build:app": "esbuild --platform=node --bundle src/index.ts --outfile=dist/proxyscrapper.js",
     "build:workers": "esbuild --platform=node --bundle src/workers/**.ts --outdir=dist/workers",
-    "build": "npm run clean && npm run build:app && npm run build:workers",
+    "build": "npm run build:app & npm run build:workers",
     "start": "node dist/proxyscrapper.js",
     "install": "sudo node install.js"
   },
