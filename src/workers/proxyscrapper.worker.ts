@@ -56,7 +56,7 @@ async function checkProxyConnection(proxy: string) {
       1000 * 60,
     )
     await fetch('https://raqz.pl', {
-      agent,
+      agent, // TODO
       signal: abortController.signal,
     });
     clearTimeout(timeoutId);

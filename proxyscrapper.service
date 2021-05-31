@@ -5,3 +5,6 @@ Description=ProxyScrapper
 Restart=always
 WorkingDirectory=/opt/node-apps/proxyscrapper/
 ExecStart=node /opt/node-apps/proxyscrapper/proxyscrapper.js
+
+[Install]
+WantedBy=multi-user.target
