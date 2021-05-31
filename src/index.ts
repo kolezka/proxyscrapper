@@ -37,20 +37,19 @@ bootstrap
     const loop = async () => {
       console.log(new Date, 'scrapping proxies list');
       const proxies = await scrapper.scrap();
-      console.log(proxies);
-      // for await (const proxy of proxies) {
-      //   const model = new ProxyModel({
-      //     status: true,
-      //     proxy,
-      //   })
-      //   try {
-      //     await model.save();
-      //   } catch (e) {
-      //     if (e.code !== 11000) { // Duplicate code error
-      //       throw e
-      //     }
-      //   }
-      // }
+      for await (const proxy of proxies) {
+        const model = new ProxyModel({
+          status: true,
+          proxy,
+        })
+        try {
+          await model.save();
+        } catch (e) {
+          if (e.code !== 11000) { // Duplicate code error
+            throw e
+          }
+        }
+      }
       console.log(new Date, 'finished scrapping proxies list');
     }
     intervalId = setInterval(loop, Config.INTERVAL);
