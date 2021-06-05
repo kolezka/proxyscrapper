@@ -25,6 +25,7 @@ export class ProxyDB implements IScrapper {
     } catch (e) {
       console.log(e);
     }
+    console.log('ProxyDB found', output.length, 'proxies');
     return output;
   }
 

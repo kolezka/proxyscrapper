@@ -22,6 +22,7 @@ export class ProxyScrapeScrapper implements IScrapper {
         console.log(e);
       }
     }
+    console.log('ProxyScrapeScrapper found', output.length, 'proxies');
     return output;
   }
 

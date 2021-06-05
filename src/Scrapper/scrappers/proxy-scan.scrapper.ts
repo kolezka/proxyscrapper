@@ -52,7 +52,7 @@ export class ProxyScanScrapper implements IScrapper {
     } catch (e) {
       console.log(e);
     }
-
+    console.log('ProxyScanScrapper found', output.length, 'proxies');
     return output;
   }
 

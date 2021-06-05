@@ -50,6 +50,7 @@ export class AdvancedScrapper implements IScrapper {
     } catch (e) {
       console.log(e);
     }
+    console.log('AdvancedScrapper found', output.length, 'proxies');
     return output;
   }
 

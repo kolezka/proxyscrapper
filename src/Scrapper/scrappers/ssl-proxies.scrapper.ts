@@ -40,6 +40,7 @@ export class SslProxiesScrapper implements IScrapper {
     } catch (e) {
       console.log(e);
     }
+    console.log('SslProxiesScrapper found', output.length, 'proxies');
     return output;
   }
 }
