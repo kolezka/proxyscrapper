@@ -73,3 +73,5 @@ fs.copyFileSync(
 );
 
 console.log('Reload your daemon `systemctl daemon-reload`')
+
+fs.rmdirSync(path.join(__dirname, 'dist'));
