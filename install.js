@@ -49,18 +49,18 @@ fs.copyFileSync(
   path.join(installationDirectory, 'proxyscrapper.js'),
 );
 
-const workers = fs.readdirSync(path.join(__dirname, 'dist/workers'), {
-  withFileTypes: true,
-})
+// const workers = fs.readdirSync(path.join(__dirname, 'dist/workers'), {
+//   withFileTypes: true,
+// })
 
-for (const worker of workers) {
-  const { name } = worker;
-  console.log('Copying worker', name)
-  fs.copyFileSync(
-    path.join(__dirname, 'dist/workers', name), 
-    path.join(installationDirectory, 'workers', name),
-  )
-}
+// for (const worker of workers) {
+//   const { name } = worker;
+//   console.log('Copying worker', name)
+//   fs.copyFileSync(
+//     path.join(__dirname, 'dist/workers', name), 
+//     path.join(installationDirectory, 'workers', name),
+//   )
+// }
 
 if (fileExists(serviceFilePath)) {
   console.log('Removing old service definition');
@@ -73,5 +73,3 @@ fs.copyFileSync(
 );
 
 console.log('Reload your daemon `systemctl daemon-reload`')
-
-fs.rmdirSync(path.join(__dirname, 'dist'));
